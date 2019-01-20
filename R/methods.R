@@ -114,7 +114,7 @@ degQC <- function(counts, groups, object=NULL, pvalue=NULL){
 #' of each gene is divided by the mean expression of that gene. The distribution
 #' of the ratios should approximate to a normal shape and the factors should be similar
 #' to the median of distributions. If some samples show different distribution,
-#' the factor may be bias due to some biological or technical factor.
+#' the factor may be biased due to some biological or technical factor.
 #' @references 
 #' * Code to calculate size factors comes from
 #'   [DESeq2::estimateSizeFactorsForMatrix()].
@@ -190,14 +190,14 @@ degMean <-
         labs(list(x="p-values", y="# genes"))
 }
 
-#' Distribution of pvalues by standard desviation range
+#' Distribution of p-values by standard deviation range
 #' 
-#' This function pot the p-valyes distribution colored by
-#' the quantiles of the standard desviation of count data.
+#' This function plots the p-values distribution colored by
+#' the quantiles of the standard deviation of count data.
 #' 
-#' @param pvalues pvalues of DEG analysis
+#' @param pvalues p-values of DEG analysis
 #' @param counts Matrix with counts for each samples and each gene.
-#'   row number should be the same length than pvalues vector.
+#'   row number should be the same length as "pvalues" vector.
 #' @return ggplot2 object
 #' @examples
 #' data(humanGender)
@@ -231,15 +231,15 @@ degVar <-
         labs(list(x="p-values", y="# genes")))
 }
 
-#' Correlation of the standard desviation and the mean of the abundance of a
+#' Correlation of the standard deviation and the mean of the abundance of a
 #' set of genes.
 #' 
 #' @param group Character vector with group name for each sample in the
-#'   same order than counts column names.
-#' @param pvalues pvalues of DEG analysis.
+#'   same order as counts column names.
+#' @param pvalues p-values of DEG analysis.
 #' @param counts Matrix with counts for each samples and each gene.
 #' @param sign Defining the cutoff to label significant features.
-#'   row number should be the same length than pvalues vector.
+#'   row number should be the same length as "pvalues" vector.
 #' @return ggplot2 object
 #' @examples
 #' data(humanGender)
@@ -285,11 +285,11 @@ degMV <-
 #' Distribution of expression of DE genes compared to the background
 #'
 #' @aliases degMB
-#' @param tags  List of genes that are DE.
+#' @param tags  List of genes that are differentially expressed.
 #' @param group Character vector with group name for each sample in the
-#'   same order than counts column names.
+#'   same order as counts column names.
 #' @param counts  Matrix with counts for each samples and each gene
-#'   Should be same length than pvalues vector.
+#'   Should be same length as "pvalues" vector.
 #' @param pop number of random samples taken for background comparison
 #' @return ggplot2 object
 #' @examples
@@ -342,14 +342,14 @@ degMB <-
         theme_bw())
 }
 
-#' Distribution of the standard desviation of
-#'     DE genes compared to the background
+#' Distribution of the standard deviation of differentially expressed
+#'     genes compared to the background
 #' @aliases degVB
-#' @param tags List of genes that are DE.
+#' @param tags List of genes that are differentially expressed.
 #' @param group Character vector with group name for each sample in the
 #'   same order than counts column names.
 #' @param counts  matrix with counts for each samples and each gene.
-#'     Should be same length than pvalues vector.
+#'     Should be same length as p-values vector.
 #' @param pop Number of random samples taken for background comparison.
 #' @return ggplot2 object
 #' @examples
@@ -441,7 +441,7 @@ degPR <- function()
 #' @param counts Output from get_rank function.
 #' @param design Colour used for each gene.
 #' @param outfile File that will contain the object.
-#' @return R object to be load into vizExp.
+#' @return R object to be loaded into vizExp.
 #' @examples 
 #' data(humanGender)
 #' library(SummarizedExperiment)

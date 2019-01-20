@@ -39,9 +39,9 @@ data(humanGender)
 
 We are going to do a differential expression analysis with edgeR/DESeq2.
 We have an object that is coming from the edgeR package. 
-It contains a gene count matrix
-for 85 TSI HapMap individuals, and the gender information. With that, we are 
-going to apply the `glmFit` function or `r Biocpkg("DESeq2")` to get genes differentially expressed 
+It contains a gene count matrix for 85 TSI HapMap individuals, and the 
+gender information. With that, we are going to apply the `glmFit` 
+function or `r Biocpkg("DESeq2")` to get genes differentially expressed 
 between males and females.
 
 ```{r experiment}
@@ -66,7 +66,7 @@ design <- as.data.frame(colData(dds))
 A main assumption in library size factor calculation of edgeR and DESeq2 (and others)
 is that the majority of genes remain unchanged. Plotting the distribution
 of gene ratios between each gene and the average gene can show how true this is.
-Not super useful for many samples because the plot becomes crowed.
+Not super useful for many samples because the plot becomes crowded.
 
 ```{r check-factor}
 degCheckFactors(counts[, 1:6])
@@ -75,7 +75,7 @@ degCheckFactors(counts[, 1:6])
 
 ### Mean-Variance QC plots
 
-p-value distribution gives an idea on how well you model is capturing the input data
+p-value distribution gives an idea on how well your model is capturing the input data
 and as well whether it could be some problem for some set of genes. In general,
 you expect to have a flat distribution with peaks at 0 and 1. In this case, we add
 the mean count information to check if any set of genes are enriched in any
@@ -141,7 +141,7 @@ Here, we show some useful plots for differentially expressed genes.
 ### Contrasts
 
 `DEGSet` is a class to store the DE results like the one from
-`results` function. `r Biocpkg("DESeq2")` offers multiple way to ask for
+`results` function. `r Biocpkg("DESeq2")` offers multiple ways to ask for
 contrasts/coefficients. With `degComps` is easy to get multiple
 results in a single object:
 
@@ -164,7 +164,7 @@ deg(degs[[1]])
 By default it would output the `shrunken` table always, as defined by
 `degDefault`, that contains the default table to get.
 
-To get the original results table, use the parameter as this:
+To get the original results table, use the parameter like this:
 
 ```{r raw}
 deg(degs[[1]], "raw", "tibble")
@@ -173,7 +173,7 @@ deg(degs[[1]], "raw", "tibble")
 Note that the format of the output can be changed to tibble, or data.frame with
 a third parameter `tidy`.
 
-The table will be always sorted by padj.
+The table will always be sorted by padj.
 
 And easy way to get significant genes is:
 
@@ -188,7 +188,7 @@ significants(degs, fc = 0, fdr = 0.05)
 ```
 
 
-And it can returns the full table for a list:
+And it can return the full table for a list:
 
 ```{r significants-list-full}
 significants(degs, fc = 0, fdr = 0.05, full = TRUE)
@@ -196,7 +196,7 @@ significants(degs, fc = 0, fdr = 0.05, full = TRUE)
 
 
 Since log2FoldChange are shrunken, the method for DEGSet class now can
-plot these changes as follow:
+plot these changes as follows:
 
 ```{r plotMA}
 degMA(degs[[1]], diff = 2, limit = 3)
@@ -220,8 +220,8 @@ degMA(degs[[1]], limit = 3, correlation = TRUE)
 
 ### Volcano plots
 
-Volcano plot using the output of `r Biocpkg("DESeq2")`. It mainly needs data.frame with
-two columns (logFC and pVal). Specific genes can be plot using the option
+Volcano plot using the output of `r Biocpkg("DESeq2")`. It mainly needs a data.frame with
+two columns (logFC and pVal). Specific genes can be plotted using the option
 `plot\_text` (subset of the previous data.frame with a 3rd column to be used
 to plot the gene name).
 
@@ -236,7 +236,7 @@ Note that the function is compatible with DEGset. Using
 
 ### Gene plots
 
-Plot top genes coloring by group. Very useful for experiments with nested 
+Plot top genes colored by group. Very useful for experiments with nested 
 groups. `xs` can be `time` or `WT`/`KO`, and `group` can be `treated`/`untreated`.
 Another classification can be added, like `batch` that will plot points 
 with different shapes.
@@ -245,7 +245,7 @@ with different shapes.
 degPlot(dds = dds, res = res, n = 6, xs = "group")
 ```
 
-Another option for plotting genes in a wide format:
+Another option for plotting genes in wide format:
 
 ```{r deseq2-gene-plot-wide}
 degPlotWide(dds, rownames(dds)[1:5], group="group")
@@ -267,10 +267,9 @@ degSignature(humanGender, geneInfo, group = "group")
 ### Full report
 
 If you have a DESeq2 object, you can use degResults to create a full report
-with markdown code inserted,
-including figures and table with top de-regulated genes, GO enrichment
-analysis and heatmaps and PCA plots. If you set \Rcode{path\_results},
-different files will be saved there.
+with markdown code inserted, including figures and table with top de-regulated
+genes, GO enrichment analysis and heatmaps and PCA plots. If you set 
+\Rcode{path\_results}, different files will be saved there.
 
 ```{r deseq2}
 resreport <- degResults(dds = dds, name = "test", org = NULL,
@@ -292,7 +291,7 @@ shiny::runGitHub("lpantano/shiny", subdir="expression")
 
 ## Detect patterns of expression
 
-In this section, we show how to detect pattern of expression. Mainly useful when
+In this section, we show how to detect patterns of expression. Mainly useful when
 data is a time course experiment. `degPatterns` needs a expression
 matrix, the design experiment and the column used to group samples.
 
